@@ -22,6 +22,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Labs.Services.Geolocation;
+using MonoTouch.ObjCRuntime;
 
 [assembly: Dependency(typeof(Xamarin.Forms.Labs.iOS.Services.Geolocation.Geolocator))]
 namespace Xamarin.Forms.Labs.iOS.Services.Geolocation
@@ -33,7 +34,10 @@ namespace Xamarin.Forms.Labs.iOS.Services.Geolocation
 			this.manager = GetManager();
 			this.manager.AuthorizationChanged += OnAuthorizationChanged;
 			this.manager.Failed += OnFailed;
-
+            if (this.manager.RespondsToSelector(new Selector("requestWhenInUseAuthorization")))
+            {
+                this.manager.RequestWhenInUseAuthorization();
+            }
 			if (UIDevice.CurrentDevice.CheckSystemVersion (6, 0))
 				this.manager.LocationsUpdated += OnLocationsUpdated;
 			else

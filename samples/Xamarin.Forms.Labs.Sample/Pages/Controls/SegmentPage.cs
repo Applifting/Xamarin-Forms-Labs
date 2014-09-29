@@ -31,6 +31,12 @@ namespace Xamarin.Forms.Labs.Sample.Pages.Controls
                 }
             };
 
+			var segmentView = new SegmentedControlView() {
+				SegmentsItens  = "One;Two;Three",
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+				VerticalOptions = LayoutOptions.Start
+			};
+
             segment.SelectedSegment = 1;
 
             Content = new StackLayout
@@ -38,8 +44,8 @@ namespace Xamarin.Forms.Labs.Sample.Pages.Controls
                 Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 10),
                 Orientation = StackOrientation.Vertical,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                VerticalOptions = LayoutOptions.FillAndExpand,
-                Children = { segment },
+				VerticalOptions = LayoutOptions.Start,
+				Children = { segment,segmentView },
             };
         }
     }

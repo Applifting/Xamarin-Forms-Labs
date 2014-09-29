@@ -12,6 +12,15 @@ namespace Xamarin.Forms.Labs.iOS.Controls
 {
     public class SegmentedControlViewRenderer : ViewRenderer<SegmentedControlView , UISegmentedControl>
 	{
+		bool _isElementChanging;
+		private void ProtectFromEventCycle(Action action){
+			if(_isElementChanging == false){
+				_isElementChanging = true;
+				action.Invoke();
+				_isElementChanging = false;
+			}
+		}
+
 		//
 		// Methods
 		//
@@ -26,8 +35,21 @@ namespace Xamarin.Forms.Labs.iOS.Controls
 
 		private void HandleControlValueChanged (object sender, EventArgs e)
 		{
-			base.Element.SelectedItem = base.Control.SelectedSegment;
-			base.Element.InvokeOnSelectedChanged();
+			this.ProtectFromEventCycle(() => {
+				base.Element.SelectedItem = base.Control.SelectedSegment;
+				base.Element.InvokeOnSelectedChanged();
+			});
+		}
+
+		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		{
+			base.OnElementPropertyChanged(sender, e);
+			this.ProtectFromEventCycle(() => {
+				if(e.PropertyName == SegmentedControlView.SelectedItemProperty.PropertyName){
+					SelectSegment(Element.SelectedItem);
+				}
+			});
+
 		}
 
 
@@ -48,11 +70,21 @@ namespace Xamarin.Forms.Labs.iOS.Controls
 				}
 
 				native.TintColor = this.Element.TintColor.ToUIColor();
-				native.SelectedSegment = 0;
+
 
 				base.SetNativeControl (native);
-
+				SelectSegment(this.Element.SelectedItem);
 				base.Control.ValueChanged += new EventHandler (this.HandleControlValueChanged);
+			}
+		}
+
+
+		private void SelectSegment(int segment){
+		
+			if(segment >= 0){
+				Control.SelectedSegment = segment;
+			}else{
+				Control.SelectedSegment = -1;
 			}
 		}
 	}

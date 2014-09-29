@@ -11,4 +11,6 @@
   <color name="calendar_text_active">#ff778088</color>
   <color name="calendar_text_selected">#ffffffff</color>
   <color name="calendar_text_unselectable">#7f778088</color>
+  <color name="radio_button_selected_color">#ff33b5e5</color>
+  <color name="radio_button_unselected_color">@android:color/transparent</color>
 </resources>

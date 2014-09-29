@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -151,6 +151,10 @@
     <Compile Include="Controls\Calendar\MonoDroid.TimesSquare\CalendarArrowView.cs" />
     <Compile Include="Controls\Calendar\MonoDroid.TimesSquare\CalendarMonthPageTransformer.cs" />
     <Compile Include="Controls\ExtendedTableView\ExtendedTableViewRenderer.cs" />
+    <Compile Include="Extensions\FontExtensions.cs" />
+    <Compile Include="Controls\SegmentControlView\SegmentedGroup.cs" />
+    <Compile Include="Controls\SegmentControlView\SegmentedControlViewRenderer.cs" />
+    <Compile Include="Controls\SegmentControlView\SegmentView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -179,6 +183,16 @@
     <AndroidResource Include="Resources\layout\calendar_picker.xml" />
     <AndroidResource Include="Resources\drawable\ad16.jpg" />
     <AndroidResource Include="Resources\layout\calendar_pager_layout.xml" />
+    <AndroidResource Include="Resources\drawable\radio_checked_default.xml" />
+    <AndroidResource Include="Resources\drawable\radio_checked_left.xml" />
+    <AndroidResource Include="Resources\drawable\radio_checked_middle.xml" />
+    <AndroidResource Include="Resources\drawable\radio_checked_right.xml" />
+    <AndroidResource Include="Resources\drawable\radio_unchecked_default.xml" />
+    <AndroidResource Include="Resources\drawable\radio_unchecked_left.xml" />
+    <AndroidResource Include="Resources\drawable\radio_unchecked_middle.xml" />
+    <AndroidResource Include="Resources\drawable\radio_unchecked_right.xml" />
+    <AndroidResource Include="Resources\drawable\button_text_color.xml" />
+    <AndroidResource Include="Resources\drawable\radio_button_item.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -214,4 +228,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Xamarin.Forms.1.2.3.6256-pre4\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Forms.1.2.3.6256-pre4\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets'))" />
   </Target>
+  <ItemGroup>
+    <Folder Include="Controls\SegmentControlView\" />
+  </ItemGroup>
 </Project>

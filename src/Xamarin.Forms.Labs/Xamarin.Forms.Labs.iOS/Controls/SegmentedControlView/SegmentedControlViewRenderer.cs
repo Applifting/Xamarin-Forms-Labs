@@ -27,6 +27,7 @@ namespace Xamarin.Forms.Labs.iOS.Controls
 		private void HandleControlValueChanged (object sender, EventArgs e)
 		{
 			base.Element.SelectedItem = base.Control.SelectedSegment;
+			base.Element.InvokeOnSelectedChanged();
 		}
 
 
@@ -38,7 +39,9 @@ namespace Xamarin.Forms.Labs.iOS.Controls
 			if (e.OldElement == null) {   
 				// perform initial setup
 				var native = new UISegmentedControl (RectangleF.Empty);
+			
 				var segments = this.Element.SegmentsItens.Split (';');
+
 
 				for (int i = 0; i < segments.Length; i++) {
 					native.InsertSegment (segments[i], i, false);

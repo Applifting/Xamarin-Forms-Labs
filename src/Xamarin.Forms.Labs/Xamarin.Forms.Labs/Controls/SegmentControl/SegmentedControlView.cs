@@ -48,5 +48,19 @@ namespace Xamarin.Forms.Labs.Controls
                 SetValue(TintColorProperty, value);
             }
         }
+
+		/// <summary>
+		/// The checked changed event.
+		/// </summary>
+		public event EventHandler<EventArgs<int>> SelectedChanged;
+
+
+
+		public void InvokeOnSelectedChanged(){
+			if(SelectedChanged != null){
+				SelectedChanged(this, new EventArgs<int>(SelectedItem));
+			}
+		}
+
     }
 }

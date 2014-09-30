@@ -37,9 +37,31 @@ namespace Xamarin.Forms.Labs.Droid.Controls
 		void HandleCheckedChange (object sender, Android.Widget.RadioGroup.CheckedChangeEventArgs e)
 		{
 			ProtectFromEventCycle(() => {
-				base.Element.SelectedItem = e.CheckedId;
+				var radioButton = Control.FindViewById( e.CheckedId);
+				int idx = Control.IndexOfChild(radioButton);
+				base.Element.SelectedItem = idx;
 				Element.InvokeOnSelectedChanged();
 			});
+		}
+
+		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		{
+			base.OnElementPropertyChanged(sender, e);
+			this.ProtectFromEventCycle(() => {
+				if(Control != null){
+					if(e.PropertyName == SegmentedControlView.SelectedItemProperty.PropertyName){
+						SetSelectedValue(Element.SelectedItem);
+					}
+				}
+			});
+		}
+
+		private void SetSelectedValue(int value){
+			if(value == -1){
+				Control.ClearCheck();
+			}else{
+				Control.Check(Control.GetChildAt(value).Id);
+			}
 		}
 
 
@@ -52,23 +74,25 @@ namespace Xamarin.Forms.Labs.Droid.Controls
 				var control = new SegmentedGroup(Context);
 				control.LayoutParameters = new LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent);
 				control.SetGravity(GravityFlags.Center);
-
+				control.TintColor = e.NewElement.TintColor.ToAndroid();
 				control.Orientation = Android.Widget.Orientation.Horizontal;
+				control.CheckedChange += HandleCheckedChange;
 
 				if(e.NewElement.SegmentsItens != null) {
+					LayoutInflater inflatorservice =
+						(LayoutInflater)Context.GetSystemService(Android.Content.Context.LayoutInflaterService);
 					foreach(string segmentText in e.NewElement.SegmentsItens.Split(';')) {
-						LayoutInflater inflatorservice =
-							(LayoutInflater)Context.GetSystemService(Android.Content.Context.LayoutInflaterService);
 						var radioButton = (Android.Widget.RadioButton)inflatorservice.Inflate(Resource.Drawable.radio_button_item,null);
 						//radioButton.LayoutParameters = new Android.Widget.RadioGroup.LayoutParams(LayoutParams.WrapContent, LayoutParams.WrapContent,1);
-						radioButton.Text = segmentText;
 						control.AddView(radioButton);
-						this.Control.CheckedChange += HandleCheckedChange;
+						radioButton.Text = segmentText;
+
+
 					}
 				}
 
 				SetNativeControl(control);
-
+				SetSelectedValue(e.NewElement.SelectedItem);
 			}
 		}
 

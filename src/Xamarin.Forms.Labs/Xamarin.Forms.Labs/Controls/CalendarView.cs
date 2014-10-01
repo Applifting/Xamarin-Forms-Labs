@@ -56,7 +56,7 @@ namespace Xamarin.Forms.Labs.Controls
 		//Helper method
 		public static DateTime FirstDayOfMonth(DateTime date)
 		{
-			return date.AddDays(1-date.Day);
+            return date.AddDays(1-date.Day).Date;
 		}
 		//Helper method
 		public static DateTime LastDayOfMonth(DateTime date)

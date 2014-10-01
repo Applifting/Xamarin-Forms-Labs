@@ -35,72 +35,70 @@ namespace Xamarin.Forms.Labs.Droid.Controls.Calendar
         {
         }
 
-        public bool Selectable
-        {
-            set
-            {
+        public bool Selectable {
+            set {
                 _isSelectable = value;
             }
         }
 
-        public bool IsCurrentMonth
-        {
-            set
-            {
+        public bool IsCurrentMonth {
+            set {
                 _isCurrentMonth = value;
             }
         }
 
-        public bool IsToday
-        {
-            set
-            {
+        public bool IsToday {
+            set {
                 _isToday = value;
             }
         }
 
-        public bool IsHighlighted
-        {
-            set
-            {
+        public bool IsHighlighted {
+            set {
                 _isHighlighted = value;
             }
         }
 
-        public RangeState RangeState
-        {
-            set
-            {
+        public RangeState RangeState {
+            set {
                 _rangeState = value;
             }
         }
 
-		public void SetStyle(StyleDescriptor style){
-			if(style.DateLabelFont != null) {
-				this.Typeface = (style.DateLabelFont);
-			}
-			if(this.Selected){
-				SetBackgroundColor(style.SelectedDateBackgroundColor);
-				SetTextColor(style.SelectedDateForegroundColor);
-			}else if(_isToday){
-				SetBackgroundColor(style.TodayBackgroundColor);
-				SetTextColor(style.TodayForegroundColor);
-			}else if(_isHighlighted){
-				SetBackgroundColor(style.HighlightedDateBackgroundColor);
-				if(_isCurrentMonth) {
-					SetTextColor(style.HighlightedDateForegroundColor);
-				}else{
-					SetTextColor(style.InactiveDateForegroundColor);
-				}
-			}
-			else if(!_isCurrentMonth){
-				SetBackgroundColor(style.InactiveDateBackgroundColor);
-				SetTextColor(style.InactiveDateForegroundColor);
-			}else{
-				SetBackgroundColor(style.DateBackgroundColor);
-				SetTextColor(style.DateForegroundColor);
-			}
-		}
+        public void SetStyle(StyleDescriptor style)
+        {
+            if(style.DateLabelFont != null)
+            {
+                this.Typeface = (style.DateLabelFont);
+            }
+            if(this.Selected)
+            {
+                SetBackgroundColor(style.SelectedDateBackgroundColor);
+                SetTextColor(style.SelectedDateForegroundColor);
+            } else if(_isToday)
+            {
+                SetBackgroundColor(style.TodayBackgroundColor);
+                SetTextColor(style.TodayForegroundColor);
+            } else if(_isHighlighted)
+            {
+                SetBackgroundColor(style.HighlightedDateBackgroundColor);
+                if(_isCurrentMonth)
+                {
+                    SetTextColor(style.HighlightedDateForegroundColor);
+                } else
+                {
+                    SetTextColor(style.InactiveDateForegroundColor);
+                }
+            } else if(!_isCurrentMonth)
+            {
+                SetBackgroundColor(style.InactiveDateBackgroundColor);
+                SetTextColor(style.InactiveDateForegroundColor);
+            } else
+            {
+                SetBackgroundColor(style.DateBackgroundColor);
+                SetTextColor(style.DateForegroundColor);
+            }
+        }
 
 
     }

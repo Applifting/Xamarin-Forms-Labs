@@ -87,5 +87,44 @@ namespace Xamarin.Forms.Labs.Controls
             get { return (int)GetValue(ImageWidthRequestProperty); }
             set { SetValue(ImageWidthRequestProperty, value); }
         }
+
+
+        /// <summary>
+        /// Backing field for the padding property.
+        /// </summary>
+        public static readonly BindableProperty PaddingProperty =
+            BindableProperty.Create<ImageButton, Thickness>(
+                p => p.Padding, new Thickness(0));
+
+        /// <summary>
+        /// Gets or sets the requested padding for the content of the button.  
+        /// </summary>
+        /// <value>
+                /// The Padding property gets/sets the value of the backing field, PaddingProperty.
+        /// </value> 
+        public Thickness Padding
+        {
+            get { return (Thickness)GetValue(PaddingProperty); }
+            set { SetValue(PaddingProperty, value); }
+        }
+
+        /// <summary>
+        /// Backing field for the ImageToTextSpacing property.
+        /// </summary>
+        public static readonly BindableProperty ImageToTextSpacingProperty =
+            BindableProperty.Create<ImageButton, float>(
+                p => p.ImageToTextSpacing, 2);
+
+        /// <summary>
+        /// Gets or sets the requested space between text and the picture of the button.  
+        /// </summary>
+        /// <value>
+        /// The Padding property gets/sets the value of the backing field, ImageToTextSpacingProperty.
+        /// </value> 
+        public float ImageToTextSpacing
+        {
+            get { return (float)GetValue(ImageToTextSpacingProperty); }
+            set { SetValue(ImageToTextSpacingProperty, value); }
+        }
     }
 }

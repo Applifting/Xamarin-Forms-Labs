@@ -12,10 +12,14 @@ namespace Xamarin.Forms.Labs
         /// </summary>
         int Height { get; }
 
+        int DipHeight { get;}
+
         /// <summary>
         /// Gets the screen width in pixels
         /// </summary>
         int Width { get; }
+
+        int DipWidth {get;}
 
         /// <summary>
         /// Gets the screens X pixel density per inch

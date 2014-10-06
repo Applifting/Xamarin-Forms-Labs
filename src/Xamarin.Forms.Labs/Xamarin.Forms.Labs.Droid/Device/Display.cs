@@ -2,6 +2,8 @@
 using Android.App;
 using Xamarin.Forms.Labs.Services;
 using Xamarin.Forms.Labs.Droid.Services;
+using Android.Util;
+using Android.Content.Res;
 
 namespace Xamarin.Forms.Labs
 {
@@ -67,6 +69,18 @@ namespace Xamarin.Forms.Labs
         {
             get;
             private set;
+        }
+
+        public int DipHeight {
+            get {
+                return (int)Math.Round(Height/Resources.System.DisplayMetrics.Density);
+            }
+        }
+
+        public int DipWidth {
+            get {
+                return (int)Math.Round(Width/Resources.System.DisplayMetrics.Density);
+            }
         }
 
         public IFontManager FontManager

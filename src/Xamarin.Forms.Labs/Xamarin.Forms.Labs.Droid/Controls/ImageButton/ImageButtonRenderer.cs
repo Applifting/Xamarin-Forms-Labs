@@ -36,18 +36,27 @@ namespace Xamarin.Forms.Labs.Droid.Controls.ImageButton
         {
             base.OnElementChanged(e);
 
+
+
             if (e.OldElement != null)
             {
                 return;
             }
             var targetButton = this.Control;
 			if(targetButton != null){
+
 				targetButton.SetOnTouchListener(TouchListener.Instance.Value);
 			}
+            if(targetButton != null && Element != null){
+                var padding = ImageButton.Padding;
+                targetButton.SetPadding((int)padding.Left,(int)padding.Top,(int)padding.Right,(int)padding.Bottom);
+            }
 
 			if(this.Element != null && this.Element.Font != Font.Default && targetButton != null){
-				targetButton.Typeface = Element.Font.ToExtendedTypeface(Context);
+
+                targetButton.Typeface = Element.Font.ToExtendedTypeface(Context);
 			}
+
 
             if (this.Element != null && this.ImageButton.Source != null )
             {

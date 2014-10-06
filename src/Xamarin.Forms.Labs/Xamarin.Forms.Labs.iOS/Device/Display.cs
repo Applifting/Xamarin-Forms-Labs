@@ -46,6 +46,18 @@ namespace Xamarin.Forms.Labs
             private set;
         }
 
+        public int DipHeight {
+            get {
+                return (int)Math.Round(Height / UIScreen.MainScreen.Scale);
+            }
+        }
+
+        public int DipWidth {
+            get {
+                return (int)Math.Round(Width / UIScreen.MainScreen.Scale);
+            }
+        }
+
         /// <summary>
         /// Gets the screens X pixel density per inch
         /// </summary>

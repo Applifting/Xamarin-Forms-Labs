@@ -101,7 +101,9 @@ namespace Xamarin.Forms.Labs.iOS.Controls
                 {
                     attrString.AddAttribute(UIStringAttributeKey.StrikethroughStyle, NSNumber.FromInt32((int)NSUnderlineStyle.Single), new NSRange(0, attrString.Length));
                 }
-                attrString.AddAttribute(UIStringAttributeKey.Font,control.Font,new NSRange(0, attrString.Length));
+                var wholeString = new NSRange(0, attrString.Length);
+                attrString.AddAttribute(UIStringAttributeKey.Font,control.Font,wholeString);
+                attrString.AddAttribute(UIStringAttributeKey.ForegroundColor,control.TextColor,wholeString);
                 control.AttributedText = attrString;
             }
         }

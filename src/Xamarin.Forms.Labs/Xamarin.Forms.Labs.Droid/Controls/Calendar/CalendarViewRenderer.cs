@@ -88,8 +88,9 @@ namespace Xamarin.Forms.Labs.Droid.Controls.Calendar
 
         private void SetDisplayedMonth(DateTime newMonth)
         {
-
-            if(newMonth >= XamLabsControls.CalendarView.FirstDayOfMonth(Element.MinDate) && newMonth <= XamLabsControls.CalendarView.LastDayOfMonth(Element.MaxDate))
+            var firstDayOfMonth = XamLabsControls.CalendarView.FirstDayOfMonth(Element.MinDate);
+            var lastDayOfMonth = XamLabsControls.CalendarView.LastDayOfMonth(Element.MaxDate);
+            if(newMonth >= firstDayOfMonth && newMonth <= lastDayOfMonth)
             {
                 var index = (newMonth.Month - Element.MinDate.Month) + 12 * (newMonth.Year - Element.MinDate.Year);
                 SelectMonth(index, false);

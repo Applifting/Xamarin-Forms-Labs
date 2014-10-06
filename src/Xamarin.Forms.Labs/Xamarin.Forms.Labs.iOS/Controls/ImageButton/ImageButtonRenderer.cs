@@ -49,14 +49,15 @@ namespace Xamarin.Forms.Labs.iOS.Controls.ImageButton
             if (imageButton != null && targetButton != null && imageButton.Source != null)
             {
                 await SetImageAsync(imageButton.Source, this.GetWidth(imageButton.ImageWidthRequest), this.GetHeight(imageButton.ImageHeightRequest), targetButton);
+                SetPadding(targetButton,imageButton.Padding);
 
                 switch (imageButton.Orientation)
                 {
                     case ImageOrientation.ImageToLeft:
-                        AlignToLeft(targetButton);
+                        AlignToLeft(targetButton,imageButton.ImageToTextSpacing);
                         break;
                     case ImageOrientation.ImageToRight:
-                        AlignToRight(imageButton.ImageWidthRequest, targetButton);
+                        AlignToRight(imageButton.ImageWidthRequest, targetButton,imageButton.ImageToTextSpacing);
                         break;
                     case ImageOrientation.ImageOnTop:
                         AlignToTop(imageButton.ImageHeightRequest, imageButton.ImageWidthRequest, targetButton);
@@ -95,13 +96,17 @@ namespace Xamarin.Forms.Labs.iOS.Controls.ImageButton
         /// Properly aligns the title and image on a button to the left.
         /// </summary>
         /// <param name="targetButton">The button to align.</param>
-        private static void AlignToLeft(UIButton targetButton)
+        private static void AlignToLeft(UIButton targetButton,float imageToTextSpacing)
         {
             targetButton.HorizontalAlignment = UIControlContentHorizontalAlignment.Left;
             targetButton.TitleLabel.TextAlignment = UITextAlignment.Left;
 
-            var titleInsets = new UIEdgeInsets(0, ControlPadding, 0, -1 * ControlPadding);
+            var titleInsets = new UIEdgeInsets(0, imageToTextSpacing, 0, -1 * imageToTextSpacing);
             targetButton.TitleEdgeInsets = titleInsets;
+        }
+
+        private static void SetPadding(UIButton targetButton, Thickness padding){
+            targetButton.ContentEdgeInsets = new UIEdgeInsets((float)padding.Top, (float)padding.Left, (float)padding.Bottom, (float)padding.Right);
         }
 
         /// <summary>
@@ -109,15 +114,15 @@ namespace Xamarin.Forms.Labs.iOS.Controls.ImageButton
         /// </summary>
         /// <param name="widthRequest">The requested image width.</param>
         /// <param name="targetButton">The button to align.</param>
-        private static void AlignToRight(int widthRequest, UIButton targetButton)
+        private static void AlignToRight(int widthRequest, UIButton targetButton,float imageToTextSpacing)
         {
             targetButton.HorizontalAlignment = UIControlContentHorizontalAlignment.Right;
             targetButton.TitleLabel.TextAlignment = UITextAlignment.Right;
 
-            var titleInsets = new UIEdgeInsets(0, 0, 0, widthRequest + ControlPadding);
+            var titleInsets = new UIEdgeInsets(0, 0, 0, widthRequest + imageToTextSpacing);
 
             targetButton.TitleEdgeInsets = titleInsets;
-            var imageInsets = new UIEdgeInsets(0, widthRequest, 0, -1 * widthRequest);
+            var imageInsets = new UIEdgeInsets(0, imageToTextSpacing, 0, -1 * imageToTextSpacing);
             targetButton.ImageEdgeInsets = imageInsets;
         }
 

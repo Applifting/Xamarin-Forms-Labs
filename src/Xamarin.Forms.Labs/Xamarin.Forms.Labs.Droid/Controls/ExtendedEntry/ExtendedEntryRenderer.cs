@@ -33,7 +33,7 @@ namespace Xamarin.Forms.Labs.Droid
                 SetTextAlignment(view);
             //if (e.PropertyName == ExtendedEntry.HasBorderProperty.PropertyName)
             //    SetBorder(view);
-            if (e.PropertyName == ExtendedEntry.PlaceholderTextColorProperty.PropertyName)
+			if (e.PropertyName == ExtendedEntry.PlaceholderTextColorProperty.PropertyName || e.PropertyName == ExtendedEntry.TextProperty.PropertyName)
                 SetPlaceholderTextColor(view);
 		}
 

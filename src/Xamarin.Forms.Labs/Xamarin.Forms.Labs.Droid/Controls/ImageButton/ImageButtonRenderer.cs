@@ -158,6 +158,12 @@ namespace Xamarin.Forms.Labs.Droid.Controls.ImageButton
             return returnValue;
         }
 
+        public override void ChildDrawableStateChanged(Android.Views.View child)
+        {
+            base.ChildDrawableStateChanged(child);
+            Control.Text = Control.Text;
+        }
+
 		 /// <summary>
 		/// Returns a drawable dimension modified according to the current display DPI.
 		 /// </summary>

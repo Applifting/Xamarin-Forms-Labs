@@ -30,16 +30,16 @@ namespace Xamarin.Forms.Labs.Sample
                 IsStrikeThrough = true,
                 FontSize = 22,
             };
-			var font = Font.OfSize("Open 24 Display St", 22);
+			var font = Font.OfSize("Open 24 Display St", 6);
 			var label3 = new ExtendedLabel
 			{
-				Text = "From code, Strikethrough and using Font property",
-
+				Text = "From code, Strikethrough and using Font property of size 6",
+                Font = font,
 				IsUnderline = false,
 				IsStrikeThrough = true
 			};
-			label3.Font = font;
-			stkRoot.Children.Add(label3);
+			//label3.Font = font;
+            stkRoot.Children.Insert(0,label3);
             stkRoot.Children.Add(label2);
 			stkRoot.Children.Add(label);
         }
